@@ -1,6 +1,6 @@
 <!--<p style="color: green"><%#= notice %></p>-->
 
-<div class="container-fluied">
+<div class="container-fluid">
   <div class="row">
     <div class="col-3">
       <p>Hello Mr <%= current_user.username %></p>
@@ -27,8 +27,14 @@
 
           <% @room.messages.each do |message| %>
 
-            <h5> <%= message.content %> </h5>
-            <p> <%= message.user.username %> </p>
+            <div class="message">
+              <div class="content <%= 'me' if message.user == current_user %>">
+                <h5> <%= message.content %> </h5>
+              </div>
+              <div class="auther">
+                <p> <%= message.user.username %> </p>
+              </div>
+            </div>
 
           <% end %>
 

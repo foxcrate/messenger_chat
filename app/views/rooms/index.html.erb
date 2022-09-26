@@ -1,15 +1,16 @@
-<p style="color: green"><%= notice %></p>
+<!--<p style="color: green"><%#= notice %></p>-->
 
 <div class="container-fluied">
   <div class="row">
     <div class="col-3">
+      <p>Hello Mr <%= current_user.username %></p>
         <div class="card-body"><%= render 'form', room: Room.new %></div>
       <hr>
 
       <%@rooms.each do |room| %>
 
         <%= link_to room do %>
-        <div class="card">
+        <div class="card mb-2">
           <div class="card-body">
             <%= room.name %>
           </div>
@@ -19,7 +20,24 @@
 
     </div>
 
-    <div class="col-9"></div>
+    <div class="col-9">
+      <% if @room.present? %>
+        <div class="chat_room">
+          <p> <%= @room.name %> </p>
+
+          <% @room.messages.each do |message| %>
+
+            <h5> <%= message.content %> </h5>
+            <p> <%= message.user.username %> </p>
+
+          <% end %>
+
+          <div class="chat_box">
+            <%= render 'messages/form', message: Message.new , room:@room %>
+          </div>
+        </div>
+      <%end %>
+    </div>
   </div>
 </div>
 

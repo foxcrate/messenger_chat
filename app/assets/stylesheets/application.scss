@@ -1,0 +1,58 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.chat_room{
+    height: 100vh;
+    overflow-y: scroll;
+    .message{
+        min-height: 59px;
+        .content_container {
+            display: inline-block;
+            //float: right;
+            .content {
+                background-color: #eeeeee;
+                padding: 8px 16px;
+                border-radius: 20px;
+            }
+
+            .auther {
+                font-size: 14px;
+                color: #777777;
+                margin-left: 10px;
+            }
+        }
+        &.me{
+            .content{
+                background-color: #0d6efd;
+                color:white;
+            }
+        }
+    }
+    .chat_box{
+        bottom:0;
+        position: absolute;
+        padding: 20px;
+        width: calc(100% - 350px);
+        input[type=text]{
+            height: 45px;
+            font-size: 18px;
+            padding: 8px;
+        }
+        .btn{
+            height: 45px;
+        }
+    }
+}

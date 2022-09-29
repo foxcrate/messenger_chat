@@ -1,23 +1,5 @@
-<!--<div id="<%#= dom_id message %>">-->
-<!--  <p>-->
-<!--    <strong>Content:</strong>-->
-    <%#= message.content %>
-<!--  </p>-->
 
-<!--  <p>-->
-<!--    <strong>User:</strong>-->
-    <%#= message.user_id %>
-<!--  </p>-->
-
-<!--  <p>-->
-<!--    <strong>Room:</strong>-->
-    <%#= message.room_id %>
-<!--  </p>-->
-
-<!--</div>-->
-
-
-<div class="message <%= 'me' if message.user == current_user %>">
+<div class="message <%= 'me' if message.user.id == current_user.id %>">
   <div class="content_container">
     <div class="content">
       <h5> <%= message.content %> </h5>

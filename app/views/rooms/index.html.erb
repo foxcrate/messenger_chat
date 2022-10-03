@@ -1,56 +1,46 @@
 <!--<p style="color: green"><%#= notice %></p>-->
 
+<div id="user_id" hidden><%= current_user.id %></div>
+<div id="room_id"><%= @room.try(:id) %></div>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-3">
-<!--      <p>Hello Mr <%#= current_user.username %></p>-->
+      <!--      <p>Hello Mr <%#= current_user.username %></p>-->
       <div class="card-body"><%= render 'form', room: Room.new %></div>
-      <hr>
+      <hr />
 
-      <%@rooms.each do |room| %>
-
-        <%= link_to room do %>
-        <div class="card mb-2">
-          <div class="card-body">
-            <%= room.name %>
-          </div>
-        </div>
-        <% end %>
-      <% end %>
-
+      <%@rooms.each do |room| %> <%= link_to room do %>
+      <div class="card mb-2">
+        <div class="card-body" onclick="clickfn()"><%= room.name %></div>
+      </div>
+      <% end %> <% end %>
     </div>
 
     <div class="col-9">
       <% if @room.present? %>
-        <div class="chat_room">
-          <nav class="navbar navbar-light bg-light mb-4">
-            <span class="navbar-brand mb-0 h1"><%= @room.name %></span>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                Hello Mr <%= current_user.username %>
-              </li>
-            </ul>
-          </nav>
-          <div id="messages">
-            <% @room.messages.each do |message| %>
-                <%= render 'messages/message' , message:message %>
-            <% end %>
-          </div>
-          <div class="chat_box">
-            <%= render 'messages/form', message: Message.new , room:@room %>
-          </div>
+      <div class="chat_room">
+        <nav class="navbar navbar-light bg-light mb-4">
+          <span class="navbar-brand mb-0 h1"><%= @room.name %></span>
+          <ul class="navbar-nav">
+            <li class="nav-item">Hello Mr <%= current_user.username %></li>
+          </ul>
+        </nav>
+        <div id="messages">
+          <% @room.messages.each do |message| %> <%= render 'messages/message' ,
+          message:message %> <% end %>
         </div>
+        <div class="chat_box">
+          <%= render 'messages/form', message: Message.new , room:@room %>
+        </div>
+      </div>
       <%end %>
     </div>
   </div>
 </div>
 
-<!--<h1>Rooms</h1>-->
-
-<!--<div id="rooms">-->
-  <%# @rooms.each do |room| %> <%#= render room %>
-<!--  <p><%#= link_to "Show this room", room %></p>-->
-  <%# end %>
-<!--</div>-->
-
-<%#= link_to "New room", new_room_path %>
+<script>
+  function clickfn(){
+      location.reload(false)
+  }
+</script>

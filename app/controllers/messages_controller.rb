@@ -26,7 +26,8 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @message.save
 
-    SendMessageJob.perform_later(@message, current_user)
+    # SendMessageJob.perform_later(@message, current_user)
+    ActionCable.server.broadcast "room_channel_#{@message.room_id}", @message.content
   end
 
   # PATCH/PUT /messages/1 or /messages/1.json

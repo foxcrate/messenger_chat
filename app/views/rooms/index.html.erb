@@ -12,7 +12,7 @@
 
       <%@rooms.each do |room| %> <%= link_to room do %>
       <div class="card mb-2">
-        <div class="card-body" onclick="clickfn()"><%= room.name %></div>
+        <div class="card-body" onclick="reload(<%=room.id%>)"><%= room.name %></div>
       </div>
       <% end %> <% end %>
     </div>
@@ -40,7 +40,7 @@
 </div>
 
 <script>
-  function clickfn(){
-      location.reload(false)
+  function reload(room_id){
+      location.replace("http://localhost:3000/rooms/"+room_id);
   }
 </script>
